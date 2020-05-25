@@ -7,14 +7,14 @@ import (
 
 func check_exist(pod_map map[string][]string, resource_name string) bool {
 	for _, m := range pod_map["NAME"] {
-		if strings.Contains(m, resource_name){
+		if strings.Contains(m, resource_name) {
 			return true
 		}
 	}
 	return false
 }
 func check_service_url(service_std map[string][]string, ip string, resource_name string) bool {
-	url := "http://192.168.10.80:30001/login"
+	url := "http://" + ip + ":30001/login"
 	response, err := http.Get(url)
 	if err != nil {
 		return false
@@ -48,5 +48,3 @@ func check_ready(pod_map map[string][]string, resource_name string) bool {
 
 	return false
 }
-
-
